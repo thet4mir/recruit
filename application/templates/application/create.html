@@ -1,0 +1,701 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <header id="main-header">
+      <div class="row no-gutters">
+        <div class="col-lg-3 col-md-4 ">
+          <div class="p-4">
+            <img src="/media/logo1.png" width="150px" class="mx-auto d-block">
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-8">
+          <div class="p-5 text-dark">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <h1 class="display-5 "> Онлайн Анкет </h1>
+            </div>
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <ul>
+                <li> Санамж </li>
+                <li><small> 1.	Мэдээллийг бүрэн гүйцэд, үнэн зөв, үг үсгийн товчлолгүй гаргацтай  бөглөх </small></li>
+                <li><small> 2.	 Анкетанд диплом, гэрчилгээ болон мэргэшлийн үнэмлэх, сертификатын  хуулбарыг хавсаргах </small></li>
+                <li><small> 3.	Таны ажилд орохыг хүссэн энэхүү анкетыг хүлээн авснаар “Өгөөмөр Гавилууд” ХХК нь өргөдөл гаргагчийн өмнө ямар нэгэн хариуцлага хүлээхгүй </small></li>
+                <li><small> 4.	Таны мэдээлэл манай хүний нөөцийн мэдээллийн санд бүртгэгдэн хадгалагдах болно. </small></li>
+                <li><small> 5.	Өргөдлийн маягт болон бусад материалыг буцаан олгохгүй болно  </small></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+		</header>
+			<form method="POST" enctype="multipart/form-data"  novalidate>
+				<div class="row mt-3">
+	        <div class="col-lg-3 col-md-4">
+	          <div class="d-flex flex-column">
+	            <div class="bg-white p-4">
+									<div class="p-4">
+		                <img src="/media/avatar.png" class="img-circle mx-auto d-block" width="150px" id="blah">
+		              </div>
+								  {% csrf_token %}
+									{{ form | crispy }}
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-lg-9 col-md-8">
+	          <div class="d-flex flex-column">
+	            <div>
+	              <div class="d-flex flex-row bg-white text-orange align-items-stretch text-center">
+									<ul class="nav nav-tabs" id="myTab" role="tablist">
+									  <li class="nav-item tab-item">
+									    <a class="nav-link active" id="experience-tab" data-toggle="tab" href="#experience" role="tab" aria-controls="experience" aria-selected="true"> <p><span class="tab-number">1</span></p><p style="margin-bottom: 0;"> Ажлын туршлага</p> </a>
+									  </li>
+									  <li class="nav-item item">
+									    <a class="nav-link" id="education-tab" data-toggle="tab" href="#education" role="tab" aria-controls="education" aria-selected="false"> <p><span class="tab-number">2</span></p><p style="margin-bottom: 0;">Боловсрол, мэргэжлийн сургалтууд</p> </a>
+									  </li>
+										<li class="nav-item item">
+									    <a class="nav-link" id="extra-tab" data-toggle="tab" href="#extra" role="tab" aria-controls="extra" aria-selected="false"><p><span class="tab-number">3</span></p><p style="margin-bottom: 0;">Нэмэлт мэдээлэл</p></a>
+									  </li>
+									  <li class="nav-item item">
+									    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><p><span class="tab-number">4</span></p><p style="margin-bottom: 0;">Холбоо барих</p></a>
+									  </li>
+									</ul>
+	              </div>
+	            </div>
+	          </div>
+						<div class="tab-content" id="myTabContent">
+
+							<div class="tab-pane fade show active" id="experience" role="tabpanel" aria-labelledby="experience-tab">
+								<div class="card card-body text-muted py-2 my-2">
+									<h5> Ажлын туршлага </h5>
+									<hr>
+									<div class="table-responsive text-dark">
+										<table class="table form-table table-sm">
+                      {% for form_data in formset2 %}
+                      <tbody class="{{ formset2.prefix }}">
+                        <tr class="table-active">
+                          <th>Албан тушаалын нэр</th>
+                          <th>Албан байгууллагын нэр</th>
+                          <th>Ажилласан жил</th>
+                          <th>Гарсан шалтгаан</th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td>
+                              {{ form_data.position }}
+                          </td>
+                          <td>
+                              {{ form_data.company }}
+                          </td>
+                          <td>
+                              {{ form_data.worked_date }}
+                          </td>
+                          <td>
+                              {{ form_data.reason }}
+                          </td>
+                          <td rowspan="4">
+                              <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset2.prefix }}">
+                                <i class="fa fa-trash"></i>
+                              </button>
+                          </td>
+                        </tr>
+                        <tr class="table-active">
+                          <td colspan="2"> Ажлын чиг үүрэг </td>
+                          <td colspan="2"> Ганы гаргаж байсан амжилтууд </td>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td colspan="2"> {{ form_data.work_task }} </td>
+                          <td colspan="2"> {{ form_data.achievements }} </td>
+                          <td>  </td>
+                        </tr>
+                      </tbody>
+										  {% endfor %}
+									    <tr>
+									        <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+									            <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset2.prefix }}">
+									               <i class="fa fa-plus"></i>
+									            </button>
+									        </td>
+									    </tr>
+									  </table>
+									  {{ formset2.management_form}}
+									</div>
+								</div>
+                <div class="card card-body text-muted py-2 my-2">
+								  <h5> ТОДОРХОЙЛОЛТ </h5>
+                  <p> Таны ажлын  ур чадварын талаар үнэлгээ өгч чадах өмнөх байгууллагын   албаны хүмүүсийн мэдээлэл. </p>
+								  <hr>
+								  <div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th>Нэр</th>
+								          <th>Байгууллага</th>
+								          <th> Албан тушаал </th>
+                          <th> Утас </th>
+                          <th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+
+								      {% for form_data in formset11 %}
+								          <tr class="{{ formset11.prefix }}">
+								              <td>
+								                  {{ form_data.name}}
+								              </td>
+								              <td>
+								                  {{ form_data.occupation }}
+								              </td>
+                              <td>
+								                  {{ form_data.position }}
+								              </td>
+                              <td>
+								                  {{ form_data.phonenumber }}
+								              </td>
+								              <td>
+								                  <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset11.prefix }}">
+								                      <i class="fa fa-trash"></i>
+								                  </button>
+								              </td>
+								          </tr>
+								      {% endfor %}
+								      <tr>
+								          <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+								              <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset11.prefix }}">
+								                 <i class="fa fa-plus"></i>
+								              </button>
+								          </td>
+								      </tr>
+								      </tbody>
+								    </table>
+								    {{ formset11.management_form }}
+								  </div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
+								<div class="card card-body text-muted py-2 my-2">
+								  <h5> Боловсрол, Мэргэжлийн сургалтууд </h5>
+								  <hr>
+								  <div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th>Сургуулийн нэр</th>
+								          <th>Төгссөн он</th>
+								          <th>Боловсролын зэрэг</th>
+								          <th>Мэргэжил</th>
+								          <th>Гэрчилгээны хуулбар</th>
+								          <th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+
+								      {% for form_data in formset1 %}
+								          <tr class="{{ formset1.prefix }}">
+								              <td>
+								                  {{ form_data.school }}
+								              </td>
+								              <td>
+								                  {{ form_data.end_date }}
+								              </td>
+								              <td>
+								                  {{ form_data.degree }}
+								              </td>
+								              <td>
+								                  {{ form_data.number }}
+								              </td>
+								              <td>
+								                  {{ form_data.copy }}
+								              </td>
+								              <td>
+								                  <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset1.prefix }}">
+								                      <i class="fa fa-trash"></i>
+								                  </button>
+								              </td>
+								          </tr>
+								      {% endfor %}
+								      <tr>
+								          <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+								              <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset1.prefix }}">
+								                 <i class="fa fa-plus"></i>
+								              </button>
+								          </td>
+								      </tr>
+								      </tbody>
+								    </table>
+								    {{ formset1.management_form }}
+								  </div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+								  <h5> КОМПЬЮТЕРИЙН УР ЧАДВАР </h5>
+								  <hr>
+								  <div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th>Ур Чадвар</th>
+								          <th>Түвшин</th>
+								          <th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+
+								      {% for form_data in formset3 %}
+								          <tr class="{{ formset3.prefix }}">
+								              <td>
+								                  {{ form_data.skill_name}}
+								              </td>
+								              <td>
+								                  {{ form_data.rate }}
+								              </td>
+								              <td>
+								                  <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset3.prefix }}">
+								                      <i class="fa fa-trash"></i>
+								                  </button>
+								              </td>
+								          </tr>
+								      {% endfor %}
+								      <tr>
+								          <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+								              <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset3.prefix }}">
+								                 <i class="fa fa-plus"></i>
+								              </button>
+								          </td>
+								      </tr>
+								      </tbody>
+								    </table>
+								    {{ formset3.management_form }}
+								  </div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+								  <h5> Хамгаалсан диплом, диссертацийн ажил </h5>
+								  <hr>
+								  <div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th>Сэдэвийн нэр</th>
+								          <th>Хамгаалсан огноо</th>
+								          <th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+								        {% for form_data in formset4 %}
+								            <tr class="{{ formset4.prefix }}">
+								                <td>
+								                    {{ form_data.dissertation}}
+								                </td>
+								                <td>
+								                    {{ form_data.dissertation_year }}
+								                </td>
+								                <td>
+								                    <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset4.prefix }}">
+								                        <i class="fa fa-trash"></i>
+								                    </button>
+								                </td>
+								            </tr>
+								        {% endfor %}
+								        <tr>
+								            <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+								                <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset4.prefix }}">
+								                  <i class="fa fa-plus"></i>
+								                </button>
+								            </td>
+								        </tr>
+								        </tbody>
+								    </table>
+								    {{ formset4.management_form }}
+								  <div>
+								</div>
+								</div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+								  <h5> Гадаад хэлний мэдлэг </h5>
+								  <hr>
+								  <div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th>Хэл</th>
+								          <th>бичих чадвар</th>
+								          <th>уншаад ойлгох</th>
+													<th>ярих чадвар</th>
+													<th>сонсоод ойлгох</th>
+													<th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+								        {% for form_data in formset5 %}
+								            <tr class="{{ formset5.prefix }}">
+								                <td>
+								                    {{ form_data.language_name}}
+								                </td>
+								                <td>
+								                    {{ form_data.writing }}
+								                </td>
+																<td>
+								                    {{ form_data.reading }}
+								                </td>
+																<td>
+								                    {{ form_data.speaking }}
+								                </td>
+																<td>
+								                    {{ form_data.listening }}
+								                </td>
+								                <td>
+								                    <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset5.prefix }}">
+								                        <i class="fa fa-trash"></i>
+								                    </button>
+								                </td>
+								            </tr>
+								        {% endfor %}
+										        <tr>
+										            <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+										                <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset5.prefix }}">
+										                  <i class="fa fa-plus"></i>
+										                </button>
+										            </td>
+										        </tr>
+								        </tbody>
+								    </table>
+								    {{ formset5.management_form }}
+								  <div>
+								</div>
+								</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade" id="extra" role="tabpanel" aria-labelledby="extra-tab">
+								<div class="card card-body text-muted py-2 my-2">
+									<h5> Нэмэлт мэдээлэл </h5>
+									<hr>
+									<div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th> Давуу тал </th>
+								          <th> Сул тал </th>
+								        </tr>
+								      </thead>
+								      <tbody>
+												{% for form_data in formset9 %}
+								            <tr class="{{ formset9.prefix }}">
+								                <td>
+								                    {{ form_data.advantage}}
+								                </td>
+								                <td>
+								                    {{ form_data.disadvantage }}
+								                </td>
+														</tr>
+														<table class="table form-table table-bordered table-sm">
+												      <thead class="thead-light text-center">
+												        <tr>
+												          <th> Таны ойрын 5 жилийн зорилго </th>
+												        </tr>
+												      </thead>
+												      <tbody>
+																<tr>
+												          <th> {{ form_data.vision }} </th>
+												        </tr>
+															</tbody>
+								        {% endfor %}
+											</tbody>
+										</table>
+										{{ formset9.management_form }}
+									</div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+									<h5> Урлаг спортын авьяас </h5>
+									<hr>
+									<div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th> Урлаг/Спортын төрөл </th>
+													<th> Хичээллэсэн жил </th>
+													<th> Зэрэг  </th>
+													<th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+												{% for form_data in formset6 %}
+								            <tr class="{{ formset6.prefix }}">
+								                <td>
+								                    {{ form_data.typeofsport}}
+								                </td>
+								                <td>
+								                    {{ form_data.traingyears }}
+								                </td>
+																<td>
+								                    {{ form_data.degreeandaward }}
+								                </td>
+								                <td>
+								                    <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset6.prefix }}">
+								                        <i class="fa fa-trash"></i>
+								                    </button>
+								                </td>
+								            </tr>
+								        {% endfor %}
+										        <tr>
+										            <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+										                <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset6.prefix }}">
+										                  <i class="fa fa-plus"></i>
+										                </button>
+										            </td>
+										        </tr>
+											</tbody>
+										</table>
+										{{ formset6.management_form }}
+									</div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+									<h5> Гавьяа шагнал </h5>
+									<hr>
+									<div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th> Шагналын нэр </th>
+													<th> шагнагдсан он </th>
+													<th> Шагнал олгосон байгууллага </th>
+													<th></th>
+								        </tr>
+								      </thead>
+								      <tbody>
+												{% for form_data in formset7 %}
+								            <tr class="{{ formset7.prefix }}">
+								                <td>
+								                    {{ form_data.award_name }}
+								                </td>
+								                <td>
+								                    {{ form_data.awarded_year }}
+								                </td>
+																<td>
+								                    {{ form_data.companyofaward }}
+								                </td>
+								                <td>
+								                    <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset7.prefix }}">
+								                        <i class="fa fa-trash"></i>
+								                    </button>
+								                </td>
+								            </tr>
+								        {% endfor %}
+										        <tr>
+										            <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+										                <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset7.prefix }}">
+										                  <i class="fa fa-plus"></i>
+										                </button>
+										            </td>
+										        </tr>
+											</tbody>
+										</table>
+										{{ formset7.management_form }}
+									</div>
+								</div>
+                <div class="card card-body text-muted py-2 my-2">
+									<h5> Жолооны ур чадвар </h5>
+									<hr>
+									<div class="table-responsive text-dark">
+								    <table class="table form-table table-bordered table-sm">
+								      <thead class="thead-light text-center">
+								        <tr>
+								          <th> Ангилал </th>
+													<th> Жолоо барьсан жил </th>
+  												<th> Мэргэшсэн жолооны ангилал </th>
+                          <th> Мэргэшсэн жолоочоор ажилласан жол </th>
+								        </tr>
+								      </thead>
+								      <tbody>
+												{% for form_data in formset12 %}
+								            <tr class="{{ formset12.prefix }}">
+								                <td>
+								                    {{ form_data.type }}
+								                </td>
+								                <td>
+								                    {{ form_data.driving_years }}
+								                </td>
+																<td>
+								                    {{ form_data.pro_type }}
+								                </td>
+                                <td>
+								                    {{ form_data.protype_years }}
+								                </td>
+								            </tr>
+								        {% endfor %}
+											</tbody>
+										</table>
+										{{ formset12.management_form }}
+									</div>
+								</div>
+							</div>
+
+						  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+								<div class="card card-body text-muted py-2 my-2">
+										<h5> Гэр бүлийн байдал </h5>
+										<hr>
+										<div class="table-responsive text-dark">
+									    <table class="table form-table table-bordered table-sm">
+									      <thead class="thead-light text-center">
+									        <tr>
+									          <th> Овог нэр </th>
+														<th> Таны юу болох </th>
+														<th> Төрсөн он </th>
+														<th> Одоогийн эрхэлж буй ажил </th>
+														<th> Утас </th>
+														<th></th>
+									        </tr>
+									      </thead>
+									      <tbody>
+													{% for form_data in formset8 %}
+									            <tr class="{{ formset8.prefix }}">
+									                <td>
+									                    {{ form_data.fl_name}}
+									                </td>
+									                <td>
+									                    {{ form_data.relation }}
+									                </td>
+																	<td>
+									                    {{ form_data.dateofbirth }}
+									                </td>
+																	<td>
+									                    {{ form_data.current_position }}
+									                </td>
+																	<td>
+									                    {{ form_data.cellphone }}
+									                </td>
+									                <td>
+									                    <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset8.prefix }}">
+									                        <i class="fa fa-trash"></i>
+									                    </button>
+									                </td>
+									            </tr>
+									        {% endfor %}
+											        <tr>
+											            <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+											                <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset8.prefix }}">
+											                  <i class="fa fa-plus"></i>
+											                </button>
+											            </td>
+											        </tr>
+												</tbody>
+											</table>
+											{{ formset8.management_form }}
+										</div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+									<h5> Холбогдох хаяг </h5>
+									<hr>
+									<div class="table-responsive text-dark">
+										<table class="table form-table table-bordered table-sm">
+											<thead class="thead-light text-center">
+												<tr>
+													<th> Хаягийн төрөл </th>
+													<th> Хот/аймаг </th>
+													<th> Дүүрэг/Сум </th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for form_data in formset10 %}
+														<tr class="{{ formset10.prefix }}">
+																<td>
+																		{{ form_data.typeofaddress}}
+																</td>
+																<td>
+																		{{ form_data.country }}
+																</td>
+																<td>
+																		{{ form_data.city }}
+																</td>
+														</tr>
+														<table class="table form-table table-bordered table-sm">
+															<thead class="thead-light text-center">
+																<tr>
+																	<th> Дэлгэрэнгүй хаяг </th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>{{ form_data.address }}</td>
+																</tr>
+															</tbody>
+														</table>
+														<table class="table form-table table-bordered table-sm">
+															<thead class="thead-light text-center">
+																<tr>
+																	<th> Утас 1 </th>
+																	<th> Утас 2 </th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>{{ form_data.phone1 }}</td>
+																	<td>{{ form_data.phone2 }}</td>
+																</tr>
+															</tbody>
+														</table>
+												{% endfor %}
+											</tbody>
+										</table>
+										{{ formset10.management_form }}
+									</div>
+								</div>
+                <div class="card card-body text-muted py-2 my-2">
+										<h5> Яаралтай үед холбоо барих </h5>
+										<hr>
+										<div class="table-responsive text-dark">
+									    <table class="table form-table table-bordered table-sm">
+									      <thead class="thead-light text-center">
+									        <tr>
+									          <th> Овог нэр </th>
+														<th> Таны юу болох </th>
+														<th> Утас </th>
+														<th></th>
+									        </tr>
+									      </thead>
+									      <tbody>
+													{% for form_data in formset13 %}
+									            <tr class="{{ formset13.prefix }}">
+									                <td>
+									                    {{ form_data.name}}
+									                </td>
+									                <td>
+									                    {{ form_data.relative }}
+									                </td>
+																	<td>
+									                    {{ form_data.phonenumber }}
+									                </td>
+									                <td>
+									                    <button type="button" class="btn btn-danger btn-sm remove-form-row" id="{{ formset13.prefix }}">
+									                        <i class="fa fa-trash"></i>
+									                    </button>
+									                </td>
+									            </tr>
+									        {% endfor %}
+											        <tr>
+											            <td colspan="9" style="border-left: none!important; border-right: none !important; border-bottom: none !important;">
+											                <button type="button" class="btn btn-sm btn-success add-form-row" id="{{ formset13.prefix }}">
+											                  <i class="fa fa-plus"></i>
+											                </button>
+											            </td>
+											        </tr>
+												</tbody>
+											</table>
+											{{ formset13.management_form }}
+										</div>
+								</div>
+								<div class="card card-body text-muted py-2 my-2">
+									<button type="submit" class="btn btn-primary btn-lg"> Анкет илгээх </button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+</div>
+{% endblock %}
+{% block extra_script %}
+	<script type="text/javascript" src="{% static 'js/formset.js' %}"></script>
+{% endblock%}
