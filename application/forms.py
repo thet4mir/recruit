@@ -28,6 +28,7 @@ class GeneralForm(forms.ModelForm):
 		}
 
 		labels = {
+			'image': ('Цээж зураг'),
             'first_name': ('Нэр'),
 			'last_name': ('Овог'),
 			'register': ('Регистрийн дугаар'),

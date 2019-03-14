@@ -96,3 +96,9 @@ body{
 .ta_height{
   height: 100px !important;
 }
+.nameof{
+  color: #004dd9;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+}

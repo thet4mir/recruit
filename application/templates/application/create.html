@@ -7,8 +7,9 @@
     <header id="main-header">
       <div class="row no-gutters">
         <div class="col-lg-3 col-md-4 ">
-          <div class="p-4">
+          <div class="p-4 mt-5">
             <img src="/media/logo1.png" width="150px" class="mx-auto d-block">
+            <p class="nameof"> ӨГӨӨМӨР ГАВИЛУУД ХХК </p>
           </div>
         </div>
         <div class="col-lg-9 col-md-8">
@@ -18,12 +19,12 @@
             </div>
             <div class="d-flex flex-row justify-content-center align-items-center">
               <ul>
-                <li> Санамж </li>
-                <li><small> 1.	Мэдээллийг бүрэн гүйцэд, үнэн зөв, үг үсгийн товчлолгүй гаргацтай  бөглөх </small></li>
-                <li><small> 2.	 Анкетанд диплом, гэрчилгээ болон мэргэшлийн үнэмлэх, сертификатын  хуулбарыг хавсаргах </small></li>
-                <li><small> 3.	Таны ажилд орохыг хүссэн энэхүү анкетыг хүлээн авснаар “Өгөөмөр Гавилууд” ХХК нь өргөдөл гаргагчийн өмнө ямар нэгэн хариуцлага хүлээхгүй </small></li>
-                <li><small> 4.	Таны мэдээлэл манай хүний нөөцийн мэдээллийн санд бүртгэгдэн хадгалагдах болно. </small></li>
-                <li><small> 5.	Өргөдлийн маягт болон бусад материалыг буцаан олгохгүй болно  </small></li>
+                <p><b>САНАМЖ</b></p>
+                <li><small>	Та сүүлийн 6 сард авахуулсан цээж зурагаа оруулах </small></li>
+                <li><small> Анкетын асуулга бүрт үг үсэг товчлолгүй бүрэн гүйцэд, үнэн зөв хариулах </small></li>
+                <li><small> Хавсралтаар диплом, гэрчилгээ болон мэргэшлийн үнэмлэх, сертификатын  хуулбарыг оруулах </small></li>
+                <li><small> Таны мэдээлэл манай Хүний нөөц бүрдүүлэлтийн мэдээллийн санд бүртгэгдэн хадгалагдах болно.  </small></li>
+                <li><small> Таны ажилд орохыг хүссэн энэхүү анкетыг хүлээн авснаар “Өгөөмөр Гавилууд” ХХК нь өргөдөл гаргагчийн өмнө ямар нэгэн хариуцлага хүлээхгүй </small></li>
               </ul>
             </div>
           </div>
@@ -68,17 +69,18 @@
 
 							<div class="tab-pane fade show active" id="experience" role="tabpanel" aria-labelledby="experience-tab">
 								<div class="card card-body text-muted py-2 my-2">
-									<h5> Ажлын туршлага </h5>
-									<hr>
+									<h5> АЖЛЫН ТУРШЛАГА </h5>
+                  <p> Хамгийн сүүлд ажиллаж байсан  байгууллагаас эхлэн бичнэ үү. </p>
+                  <hr>
 									<div class="table-responsive text-dark">
-										<table class="table form-table table-sm">
+										<table class="table form-table table-sm text-center">
                       {% for form_data in formset2 %}
                       <tbody class="{{ formset2.prefix }}">
                         <tr class="table-active">
                           <th>Албан тушаалын нэр</th>
                           <th>Албан байгууллагын нэр</th>
-                          <th>Ажилласан жил</th>
-                          <th>Гарсан шалтгаан</th>
+                          <th>Ажилласан огноо</th>
+                          <th>Ажлаас гарсан шалтгаан</th>
                           <th></th>
                         </tr>
                         <tr>
@@ -101,8 +103,8 @@
                           </td>
                         </tr>
                         <tr class="table-active">
-                          <td colspan="2"> Ажлын чиг үүрэг </td>
-                          <td colspan="2"> Ганы гаргаж байсан амжилтууд </td>
+                          <th colspan="2"> Ажлын чиг үүрэг </th>
+                          <th colspan="2"> Таны гаргаж байсан амжилтууд </th>
                           <th></th>
                         </tr>
                         <tr>
@@ -125,7 +127,7 @@
 								</div>
                 <div class="card card-body text-muted py-2 my-2">
 								  <h5> ТОДОРХОЙЛОЛТ </h5>
-                  <p> Таны ажлын  ур чадварын талаар үнэлгээ өгч чадах өмнөх байгууллагын   албаны хүмүүсийн мэдээлэл. </p>
+                  <p> Таны ажлын ур чадварын талаар үнэлгээ өгч чадах өмнөх 2 байгууллагын удирдлагын мэдээлэл. </p>
 								  <hr>
 								  <div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
@@ -177,8 +179,9 @@
 
 							<div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
 								<div class="card card-body text-muted py-2 my-2">
-								  <h5> Боловсрол, Мэргэжлийн сургалтууд </h5>
-								  <hr>
+								  <h5> БОЛОВСРОЛЫН БАЙДАЛ </h5>
+                  <p> Их дээд сургууль, Сургалт дамжаанд суралцсан байдал. </p>
+                  <hr>
 								  <div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
 								      <thead class="thead-light text-center">
@@ -187,7 +190,7 @@
 								          <th>Төгссөн он</th>
 								          <th>Боловсролын зэрэг</th>
 								          <th>Мэргэжил</th>
-								          <th>Гэрчилгээны хуулбар</th>
+								          <th>Гэрчилгээний хуулбар</th>
 								          <th></th>
 								        </tr>
 								      </thead>
@@ -271,13 +274,13 @@
 								  </div>
 								</div>
 								<div class="card card-body text-muted py-2 my-2">
-								  <h5> Хамгаалсан диплом, диссертацийн ажил </h5>
+								  <h5> ХАМГААЛСАН ДИПЛОМ, ДИССЕРТАЦИЙН АЖИЛ </h5>
 								  <hr>
 								  <div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
 								      <thead class="thead-light text-center">
 								        <tr>
-								          <th>Сэдэвийн нэр</th>
+								          <th>Сэдвийн нэр</th>
 								          <th>Хамгаалсан огноо</th>
 								          <th></th>
 								        </tr>
@@ -313,17 +316,17 @@
 								</div>
 								</div>
 								<div class="card card-body text-muted py-2 my-2">
-								  <h5> Гадаад хэлний мэдлэг </h5>
+								  <h5> ГАДААД ХЭЛНИЙ МЭДЛЭГ </h5>
 								  <hr>
 								  <div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
 								      <thead class="thead-light text-center">
 								        <tr>
 								          <th>Хэл</th>
-								          <th>бичих чадвар</th>
-								          <th>уншаад ойлгох</th>
-													<th>ярих чадвар</th>
-													<th>сонсоод ойлгох</th>
+								          <th>Бичих чадвар</th>
+								          <th>Уншаад ойлгох</th>
+													<th>Ярих чадвар</th>
+													<th>Сонсоод ойлгох</th>
 													<th></th>
 								        </tr>
 								      </thead>
@@ -370,7 +373,7 @@
 
 							<div class="tab-pane fade" id="extra" role="tabpanel" aria-labelledby="extra-tab">
 								<div class="card card-body text-muted py-2 my-2">
-									<h5> Нэмэлт мэдээлэл </h5>
+									<h5> НЭМЭЛТ МЭДЭЭЛЭЛ </h5>
 									<hr>
 									<div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
@@ -408,8 +411,9 @@
 									</div>
 								</div>
 								<div class="card card-body text-muted py-2 my-2">
-									<h5> Урлаг спортын авьяас </h5>
-									<hr>
+									<h5> УРЛАГ СПОРТЫН АВЪЯАС </h5>
+                  <p> Сонирхогч, мэргэжлийн эсэх </p>
+                  <hr>
 									<div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
 								      <thead class="thead-light text-center">
@@ -452,14 +456,14 @@
 									</div>
 								</div>
 								<div class="card card-body text-muted py-2 my-2">
-									<h5> Гавьяа шагнал </h5>
+									<h5> ГАВЪЯА ШАГНАЛ </h5>
 									<hr>
 									<div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
 								      <thead class="thead-light text-center">
 								        <tr>
 								          <th> Шагналын нэр </th>
-													<th> шагнагдсан он </th>
+													<th> Шагнагдсан он </th>
 													<th> Шагнал олгосон байгууллага </th>
 													<th></th>
 								        </tr>
@@ -496,7 +500,7 @@
 									</div>
 								</div>
                 <div class="card card-body text-muted py-2 my-2">
-									<h5> Жолооны ур чадвар </h5>
+									<h5> ЖОЛООНЫ УР ЧАДВАР </h5>
 									<hr>
 									<div class="table-responsive text-dark">
 								    <table class="table form-table table-bordered table-sm">
@@ -505,7 +509,7 @@
 								          <th> Ангилал </th>
 													<th> Жолоо барьсан жил </th>
   												<th> Мэргэшсэн жолооны ангилал </th>
-                          <th> Мэргэшсэн жолоочоор ажилласан жол </th>
+                          <th> Мэргэшсэн жолоочоор ажилласан хугацаа </th>
 								        </tr>
 								      </thead>
 								      <tbody>
@@ -534,7 +538,8 @@
 
 						  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 								<div class="card card-body text-muted py-2 my-2">
-										<h5> Гэр бүлийн байдал </h5>
+										<h5> ГЭР БҮЛИЙН БАЙДАЛ </h5>
+                    <p> Зөвхөн өөрийн ам бүл дэх гишүүд </p>
 										<hr>
 										<div class="table-responsive text-dark">
 									    <table class="table form-table table-bordered table-sm">
@@ -586,13 +591,13 @@
 										</div>
 								</div>
 								<div class="card card-body text-muted py-2 my-2">
-									<h5> Холбогдох хаяг </h5>
+									<h5> ГЭРИЙН ХАЯГ </h5>
 									<hr>
 									<div class="table-responsive text-dark">
 										<table class="table form-table table-bordered table-sm">
 											<thead class="thead-light text-center">
 												<tr>
-													<th> Хаягийн төрөл </th>
+													<th> Хаягийн байдал </th>
 													<th> Хот/аймаг </th>
 													<th> Дүүрэг/Сум </th>
 												</tr>
@@ -643,7 +648,7 @@
 									</div>
 								</div>
                 <div class="card card-body text-muted py-2 my-2">
-										<h5> Яаралтай үед холбоо барих </h5>
+										<h5> ЯАРАЛТАЙ ҮЕД ХОЛБОО БАРИХ 2 ХҮНИЙ МЭДЭЭЛЭЛ </h5>
 										<hr>
 										<div class="table-responsive text-dark">
 									    <table class="table form-table table-bordered table-sm">
