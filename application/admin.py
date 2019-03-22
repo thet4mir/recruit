@@ -139,14 +139,3 @@ class cv(admin.ModelAdmin):
 admin.site.register(Job)
 
 admin.site.register(General, cv)
-
-admin.site.register(Country)
-
-admin.site.register(Gender)
-admin.site.register(Address_type)
-admin.site.register(Rate)
-admin.site.register(SW_rate)
-admin.site.register(Language)
-admin.site.register(Skills)
-admin.site.register(Degree)
-admin.site.register(Relative)
