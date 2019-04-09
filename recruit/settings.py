@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     'todo',
     'application',
     'bootstrap3',
-    'drug',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
