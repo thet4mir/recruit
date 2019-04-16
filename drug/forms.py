@@ -1,6 +1,6 @@
 from django import forms
 from .models import Drug_detail, Emchilgee, Drug_important, Onosh, History
-from account.models import User
+from client.models import User
 
 class OnoshForm(forms.ModelForm):
     class Meta:
