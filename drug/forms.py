@@ -1,5 +1,70 @@
 from django import forms
-from .models import Drug_detail
+from .models import Drug_detail, Emchilgee, Drug_important, Onosh, History
+from account.models import User
+
+class OnoshForm(forms.ModelForm):
+    class Meta:
+        model = Onosh
+
+        fields = [
+            'costumer',
+            'name',
+            'disc',
+        ]
+        widgets = {
+            'costumer': forms.Select(attrs={'class': 'onosh-fields form-control form-control-sm'}),
+            'name': forms.TextInput(attrs={'class': 'onosh-fields form-control form-control-sm'}),
+            'disc': forms.TextInput(attrs={'class': 'onosh-fields form-control form-control-sm'}),
+        }
+
+class HistoryForm(forms.ModelForm):
+    class Meta:
+        model = History
+
+        fields = [
+            'costumer',
+            'date',
+            'disc',
+        ]
+        widgets = {
+            'costumer': forms.Select(attrs={'class': 'history-fields form-control form-control-sm'}),
+            'date': forms.DateInput(attrs={"type": "date", 'class': 'history-fields form-control form-control-sm'}),
+            'disc': forms.TextInput(attrs={'class': 'history-fields form-control form-control-sm'}),
+        }
+
+class Emchilgee_form(forms.ModelForm):
+    class Meta:
+        model = Emchilgee
+
+        fields = [
+            'duration',
+            'costumer',
+        ]
+        widgets = {
+            'duration': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'costumer': forms.Select(attrs={'class': 'form-control form-control-sm'}),
+        }
+
+        labels = {
+            'duration': ('Эмчилгээ хийлгэх хоног'),
+            'costumer': ('Өвчтөн'),
+        }
+
+class Drug_important_form(forms.ModelForm):
+    class Meta:
+        model = Drug_important
+
+        fields = [
+            'name',
+            'shirheg',
+            'category',
+        ]
+        widgets = {
+            'name': forms.TextInput(attrs={'class': "drug_important-fields form-control form-control-sm"}),
+            'shirheg': forms.TextInput(attrs={'class': "drug_important-fields form-control form-control-sm"}),
+            'category': forms.Select(attrs={'class': "drug_important-fields form-control form-control-sm"}),
+        }
+
 
 class Drug_detail_create_form(forms.ModelForm):
     class Meta:
